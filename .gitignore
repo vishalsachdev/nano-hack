@@ -11,3 +11,6 @@ backups/**/venv/
 
 # Playwright caches
 playwright/.cache/
+
+# App logs
+data/query_logs.jsonl
