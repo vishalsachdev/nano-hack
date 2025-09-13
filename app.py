@@ -43,7 +43,7 @@ def load_entries() -> List[Dict]:
 def main():
     st.set_page_config(page_title="Project Explorer", page_icon="🍌", layout="wide")
     st.title("Nano Banana Project Explorer")
-    st.caption("Discover student projects using semantic search powered by Gemini")
+    st.caption("Discover projects using semantic search powered by Gemini")
 
     # Sidebar controls
     with st.sidebar:
