@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intent by Human, Words by AI — Nano Banana Explorer</title>
+<style> body{max-width:820px;margin:40px auto;font:16px/1.6 -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#222;padding:0 16px} h1,h2,h3{line-height:1.25} code{background:#f6f8fa;padding:.1em .3em;border-radius:4px} pre{background:#f6f8fa;padding:12px;border-radius:6px;overflow:auto} a{color:#0366d6;text-decoration:none} a:hover{text-decoration:underline} hr{border:none;border-top:1px solid #eee;margin:24px 0} ul{padding-left:20px} blockquote{border-left:3px solid #eee;margin:0;padding-left:12px;color:#555}</style>
+</head><body>
+<h1>Intent by Human, Words by AI: Shipping a Kaggle Project Explorer in Hours</h1>
+<p>&gt; A section dedicated to documenting the process of building with AI as a true creative partner. The AI writes based on the code that &quot;we&quot; write together, and I just put final touches. I (the human) am not the primary writer. The intent is mine, the words are (mostly) AI.</p>
+<p>If you’re a student in the iMBA/iSchool Practicum at Illinois and you’re staring at a wall of projects wondering where to start, this one’s for you. We built a live app that lets you search hundreds of Nano Banana Hackathon writeups semantically—by idea, not just keywords—so you can discover examples to learn from faster.</p>
+<p>This piece documents how we made it, in the spirit of human intent + AI execution. It’s part lab notebook, part ship-log, and a bit of spice about our tools.</p>
+<p>Links for context:</p>
+<ul>
+<li>Kaggle overview: https://www.kaggle.com/competitions/banana/overview</li>
+<li>Kaggle writeups: https://www.kaggle.com/competitions/banana/writeups</li>
+<li>Course context (Practicum @ Illinois): https://practicum.web.illinois.edu/syllabus/</li>
+<li>Repo: https://github.com/vishalsachdev/nano-hack</li>
+<li>Live app: https://nanobanana.streamlit.app/</li>
+</ul>
+<hr>
+<h2>What we shipped</h2>
+<ul>
+<li>A Streamlit app that lets you search across 800+ writeups from the Nano Banana Hackathon by idea (“virtual try‑on”, “comics generator”, “marketing poster”, etc.).</li>
+<li>Local semantic search using Gemini embeddings, with optional re‑ranking and natural‑language explanations from Gemini.</li>
+<li>Quality-of-life UI: featured searches, filters, progress indicators, and a quick link to the hackathon overview.</li>
+</ul>
+<p>Try it live (free hosting on Streamlit): https://nanobanana.streamlit.app/</p>
+<p>Files that matter:</p>
+<ul>
+<li><code>scrape_kaggle_writeups_playwright.py</code> — headless scraper that paginates the writeups and extracts title/subtitle/url.</li>
+<li><code>banana_writeups.json</code> — the dataset (clean, deduped, consistent fields).</li>
+<li><code>gemini_search.py</code> — embeddings, cosine search, optional re‑rank + explain.</li>
+<li><code>app.py</code> — Streamlit UI.</li>
+</ul>
+<hr>
+<h2>The build log (what actually happened)</h2>
+<p>1) The scrape: reality &gt; vibes</p>
+<ul>
+<li>We started from a “worked once” Firecrawl config. It returned… zero entries. Claude Code swore by it in a previous life; the live endpoint shrugged. No hard feelings—just moving on.</li>
+<li>We switched to Playwright and drove the site like a user: load the page, click page numbers (buttons, not links), and read hydrated React content. Boom: 832 entries across pages.</li>
+<li>We extracted from the anchor cards (title/short blurb/link), then normalized to a minimal schema: <code>{title, subtitle, url}</code>. No brittle DOM spelunking.</li>
+</ul>
+<p>2) The dataset: small, honest, and useful</p>
+<ul>
+<li>We dropped “description” because the list page doesn’t expose a richer body; it’s the same as the subtitle.</li>
+<li>Deduped by URL and kept only what the app needs.</li>
+</ul>
+<p>3) The search: semantic first, LLM second</p>
+<ul>
+<li>Embeddings with Gemini (<code>text-embedding-004</code>) for fast, local cosine search.</li>
+<li>Optional LLM re‑ranking (<code>gemini-1.5-flash</code>) to polish the top results and optionally “explain why these match” in plain English.</li>
+<li>Caching embeddings to <code>data/embeddings.npy</code> for instant startup on Streamlit Cloud.</li>
+</ul>
+<p>4) The UI: built for students</p>
+<ul>
+<li>Clear progress indicators (“Embedding your query…”, “Finding similar projects…”, “Re‑ranking…”).</li>
+<li>Featured searches nudged toward health, relationships, and wellness (where many student ideas live).</li>
+<li>Filters (must include/exclude) and sort (relevance/title) to tame the firehose.</li>
+<li>A tiny “About the Nano Banana Hackathon” section so you’re never lost. Context matters.</li>
+</ul>
+<hr>
+<h2>The partnership (how we worked)</h2>
+<ul>
+<li>Human intent: “Let students quickly find projects to learn from for the Practicum.” The course pushes applied, iterative building—this tool is meant to accelerate that. See syllabus: https://practicum.web.illinois.edu/syllabus/</li>
+<li>AI execution: I handled the scrape, data normalization, search wiring, UI carpentry, and docs. You tuned scope, taste, and made calls (“drop description”, “focus featured searches on wellness”, “add progress UI”).</li>
+<li>Where tools diverged: Claude Code’s prior scrape recipe didn’t translate to today’s site behavior. When the API said “done”, we still had an empty basket. We cut the ceremony, launched a real browser, paged through the UI, and got 800+ solid entries. Salt, yes—but the lesson is straightforward: ship the path that works.</li>
+</ul>
+<hr>
+<h2>Lessons we’d keep</h2>
+<ul>
+<li>Render the web like a user when in doubt. SPAs don’t owe your crawler anything.</li>
+<li>Keep the schema minimal. Title + subtitle + URL covers 80% of discovery needs.</li>
+<li>Use LLMs as accelerators, not as the only engine. Embeddings for speed; LLMs for polish.</li>
+<li>Add UX affordances early. Progress bars, featured queries, and filters reduce bounce—especially for students new to search.</li>
+</ul>
+<hr>
+<h2>How to run (locally)</h2>
+<ul>
+<li><code>python3 -m venv venv &amp;amp;&amp;amp; source venv/bin/activate</code></li>
+<li><code>pip install -r requirements.txt</code></li>
+<li><code>export GEMINI_API_KEY=YOUR_KEY</code></li>
+<li><code>streamlit run app.py</code></li>
+</ul>
+<p>On Streamlit Cloud: set <code>GEMINI_API_KEY</code> in Secrets and point entry to <code>app.py</code>.</p>
+<p>We host the production app for free on Streamlit Cloud, which makes student demos and classroom adoption painless—push to GitHub and the app redeploys automatically.</p>
+<hr>
+<h2>What’s next</h2>
+<ul>
+<li>Per‑project deep dives: open each writeup and pull a richer summary/snippets.</li>
+<li>Topic lenses: prebuilt queries for common practicum themes (product, research, design, ops).</li>
+<li>“Compare two projects” mode for faster pattern learning.</li>
+<li>Save/share collections for study groups.</li>
+</ul>
+<hr>
+<h2>Credits</h2>
+<ul>
+<li>Built with and for students in the Illinois Practicum.</li>
+<li>Kaggle Nano Banana Hackathon for the playground.</li>
+<li>Human intent by Vishal; words and wiring by me, your not‑so‑humble AI collaborator.</li>
+</ul>
+<p>If you want the raw receipts, they’re in the repo: https://github.com/vishalsachdev/nano-hack. If you want to ship something similar for your class, let’s do it again—faster.</p>
+</body></html>
