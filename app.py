@@ -45,6 +45,21 @@ def main():
     st.title("Nano Banana Project Explorer")
     st.caption("Discover projects using semantic search powered by Gemini")
 
+    with st.container():
+        st.subheader("About the Nano Banana Hackathon")
+        st.markdown(
+            """
+            The Nano Banana Hackathon is a community hackathon hosted on Kaggle, inviting builders to create apps and experiences
+            with next‑gen AI capabilities. Participants compete for over $400,000 in prizes across the Overall Track and special
+            technology prize tracks (e.g., ElevenLabs, Fal). Projects span creative tools, virtual try‑on, marketing and design,
+            education, gaming, and more.
+
+            Explore all entries in the Writeups section and use the search below to quickly find relevant projects to learn from.
+            """
+        )
+        st.link_button("View Hackathon Overview", "https://www.kaggle.com/competitions/banana/overview")
+        st.divider()
+
     # Sidebar controls
     with st.sidebar:
         st.header("Search Options")
