@@ -8,7 +8,8 @@ Student-friendly app to discover Nano Banana writeups using Gemini.
    - `python3 -m venv venv && source venv/bin/activate`
    - `pip install -r requirements.txt`
 2. Set Gemini API key
-   - `export GEMINI_API_KEY=your_key_here`
+   - Locally: `export GEMINI_API_KEY=your_key_here`
+   - Streamlit Cloud: add `GEMINI_API_KEY` in App Settings → Secrets
 3. Run the app
    - `streamlit run app.py`
 

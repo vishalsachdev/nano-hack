@@ -14,6 +14,7 @@ Cache files:
 """
 
 import os
+import contextlib
 import json
 from typing import List, Dict, Tuple
 
@@ -31,7 +32,12 @@ META_PATH = "data/embeddings_meta.json"
 def _ensure_client():
     api_key = os.getenv("GEMINI_API_KEY")
     if not api_key:
-        raise RuntimeError("GEMINI_API_KEY is not set")
+        # Fallback to Streamlit secrets if available
+        with contextlib.suppress(Exception):
+            import streamlit as st  # lazy import to avoid hard dependency elsewhere
+            api_key = st.secrets.get("GEMINI_API_KEY") or api_key
+    if not api_key:
+        raise RuntimeError("GEMINI_API_KEY is not set (env or Streamlit secrets)")
     genai.configure(api_key=api_key)
 
 
