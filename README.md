@@ -1,27 +1,24 @@
-# Hackathon Entry Analyzer
+# Nano Hack – Project Explorer
 
-MVP tool to scrape, categorize, and search hackathon entries.
+Student-friendly app to discover Nano Banana writeups using Gemini.
 
 ## Quick Start
 
-1. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
+1. Install deps
+   - `python3 -m venv venv && source venv/bin/activate`
+   - `pip install -r requirements.txt`
+2. Set Gemini API key
+   - `export GEMINI_API_KEY=your_key_here`
+3. Run the app
+   - `streamlit run app.py`
 
-2. Scrape entries:
-```bash
-python scraper.py
-```
+## What it does
 
-3. Launch search interface:
-```bash
-streamlit run search_app.py
-```
+- Builds local embeddings for `banana_writeups.json` using `text-embedding-004`
+- Performs cosine similarity search for your query
+- Optional re-ranking and explanations via `gemini-1.5-flash`
 
-## Features
+## Notes
 
-- ✅ Scrapes basic entry data (title, description, author)
-- ✅ Auto-categorizes based on keywords
-- ✅ Web interface for search and filtering
-- 🔄 Ready for video analysis enhancement
+- First run caches embeddings in `data/` for speed
+- Toggle re-ranking/explanations in the sidebar
