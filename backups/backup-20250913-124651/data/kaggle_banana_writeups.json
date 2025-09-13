@@ -1,0 +1,122 @@
+[
+  {
+    "title": "Batchify - An AI Product Shot Generator",
+    "subtitle": "Transform your product photos into high-end studio shots at scale",
+    "description": "Transform your product photos into high-end studio shots at scale",
+    "url": "https://www.kaggle.com/competitions/banana/writeups/batchify-an-ai-product-shot-generator"
+  },
+  {
+    "title": "Red Star Realism",
+    "subtitle": "Generative AI Propaganda!",
+    "description": "Generative AI Propaganda!",
+    "url": "https://www.kaggle.com/competitions/banana/writeups/red-star-realism"
+  },
+  {
+    "title": "AI Comic Creator",
+    "subtitle": "Creating comics is traditionally a time-consuming and labor-intensive process, with character consistency",
+    "description": "Creating comics is traditionally a time-consuming and labor-intensive process, with character consistency",
+    "url": "https://www.kaggle.com/competitions/banana/writeups/ai-comic-creator"
+  },
+  {
+    "title": "Style Forge",
+    "subtitle": "Nano Banana powered virtual try on",
+    "description": "Nano Banana powered virtual try on",
+    "url": "https://www.kaggle.com/competitions/banana/writeups/style-forge"
+  },
+  {
+    "title": "WorldDress AI – Instantly experience traditional costumes worldwide",
+    "subtitle": "Experience global traditions with a single photo. Pick a country and let our AI transform you in seconds.",
+    "description": "Experience global traditions with a single photo. Pick a country and let our AI transform you in seconds.",
+    "url": "https://www.kaggle.com/competitions/banana/writeups/worlddress-ai"
+  },
+  {
+    "title": "AI Immersive Chatbot (AI Friends)",
+    "subtitle": "We built an AI chatbot with consistent image/voice for immersive, lifelike conversation using Gemini 2.5 Flash Image.",
+    "description": "We built an AI chatbot with consistent image/voice for immersive, lifelike conversation using Gemini 2.5 Flash Image.",
+    "url": "https://www.kaggle.com/competitions/banana/writeups/ai-immersive-chatbot-ai-friends"
+  },
+  {
+    "title": "Improved Video Editing Elements Using Nano Banana",
+    "subtitle": "Visual Enhancing with Nano Banana (wifi Project)",
+    "description": "Visual Enhancing with Nano Banana (wifi Project)",
+    "url": "https://www.kaggle.com/competitions/banana/writeups/improved-video-editing-elements-using-nano-banana"
+  },
+  {
+    "title": "AtelierOne: AI Renaissance Portrait Generator",
+    "subtitle": "Transform your webcam photos into Renaissance masterpieces while learning art history through an interactive timeline experience.",
+    "description": "Transform your webcam photos into Renaissance masterpieces while learning art history through an interactive timeline experience.",
+    "url": "https://www.kaggle.com/competitions/banana/writeups/atelierone-ai-renaissance-portrait-generator"
+  },
+  {
+    "title": "AI Recipe Generator",
+    "subtitle": "AI Recipe Generator\" is a web application that automatically generates recipe instructions and completed dish images based on user-input",
+    "description": "AI Recipe Generator\" is a web application that automatically generates recipe instructions and completed dish images based on user-input",
+    "url": "https://www.kaggle.com/competitions/banana/writeups/ai-recipe-generator"
+  },
+  {
+    "title": "From Awkward Poses to Instagram Worthy – Building My Own AI Photo App",
+    "subtitle": "A project where I built an AI-powered app to help people improve their photo poses and backgrounds effortlessly using Google's Nano Banana m",
+    "description": "A project where I built an AI-powered app to help people improve their photo poses and backgrounds effortlessly using Google's Nano Banana m",
+    "url": "https://www.kaggle.com/competitions/banana/writeups/from-awkward-poses-to-instagram-worthy-building-my"
+  },
+  {
+    "title": "AI Mockup Pro - R.I.P Figma",
+    "subtitle": "An AI design tool that turns wireframes into high-fidelity mockups and code in seconds using Nano Banana.",
+    "description": "An AI design tool that turns wireframes into high-fidelity mockups and code in seconds using Nano Banana.",
+    "url": "https://www.kaggle.com/competitions/banana/writeups/ai-mockup-pro-r-i-p-figma"
+  },
+  {
+    "title": "PoseUp.ai: Instantly Change Your Pose with Natural Language & AI",
+    "subtitle": "An AI photo editor built on Gemini that lets you change a person's entire body pose using simple text commands or one-click templates.",
+    "description": "An AI photo editor built on Gemini that lets you change a person's entire body pose using simple text commands or one-click templates.",
+    "url": "https://www.kaggle.com/competitions/banana/writeups/poseup-ai-perfect-your-pose-in-any-photo-with-ai"
+  },
+  {
+    "title": "AI Comic Factory",
+    "subtitle": "Generate multi-page comics from a simple prompt. Provide character and style references to create your unique story with AI.",
+    "description": "Generate multi-page comics from a simple prompt. Provide character and style references to create your unique story with AI.",
+    "url": "https://www.kaggle.com/competitions/banana/writeups/ai-comic-factory"
+  },
+  {
+    "title": "Celebrity Selfie Generator",
+    "subtitle": "Upload your photo and generate a realistic selfie with up to two famous personalities from history and today.",
+    "description": "Upload your photo and generate a realistic selfie with up to two famous personalities from history and today.",
+    "url": "https://www.kaggle.com/competitions/banana/writeups/celebrity-selfie-generator"
+  },
+  {
+    "title": "AI Creative Dice – Structured Randomness for Creative Innovation",
+    "subtitle": "AI Creative Dice is your pocket-sized idea machine. Just upload then roll the dice and boom, ads concepts land right in front of you.",
+    "description": "AI Creative Dice is your pocket-sized idea machine. Just upload then roll the dice and boom, ads concepts land right in front of you.",
+    "url": "https://www.kaggle.com/competitions/banana/writeups/ai-creative-dice"
+  },
+  {
+    "title": "Expression Deck",
+    "subtitle": "A card deck of emotions",
+    "description": "A card deck of emotions",
+    "url": "https://www.kaggle.com/competitions/banana/writeups/expression-deck"
+  },
+  {
+    "title": "ProcessViz AI: Multi-Style Industrial Process Diagram Generator",
+    "subtitle": "Transforming complex industrial processes into CAD-quality diagrams, educational schematics, and photorealistic 3D renders",
+    "description": "Transforming complex industrial processes into CAD-quality diagrams, educational schematics, and photorealistic 3D renders",
+    "url": "https://www.kaggle.com/competitions/banana/writeups/processviz-ai-multi-style-industrial-process-diagr"
+  },
+  {
+    "title": "Who Were You in Ancient Times?",
+    "subtitle": "invites users to discover their historical alter egos. After uploading a selfie, the app uses Nano Banana's character-consistency engine to",
+    "description": "invites users to discover their historical alter egos. After uploading a selfie, the app uses Nano Banana's character-consistency engine to",
+    "url": "https://www.kaggle.com/competitions/banana/writeups/who-were-you-in-ancient-times"
+  },
+  {
+    "title": "VisuaLink- Instant Marketing Posters with Gemini",
+    "subtitle": "Visualink is a lightweight web app that generates professional-quality marketing posters in seconds.",
+    "description": "Visualink is a lightweight web app that generates professional-quality marketing posters in seconds.",
+    "url": "https://www.kaggle.com/competitions/banana/writeups/visualink-instant-marketing-posters-with-gemini"
+  },
+  {
+    "title": "Revolutionizing Ad Design with AI: Introducing AI-Ad-Creator",
+    "subtitle": "An AI powered digital Ad Creator",
+    "description": "An AI powered digital Ad Creator",
+    "url": "https://www.kaggle.com/competitions/banana/writeups/ai-ad-creator"
+  }
+]
