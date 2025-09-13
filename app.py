@@ -14,6 +14,7 @@ Usage:
 import os
 import json
 import hashlib
+import time
 from datetime import datetime
 from functools import lru_cache
 from typing import List, Dict, Tuple
@@ -94,11 +95,22 @@ def main():
         st.info("Type a topic or skill to get started.")
         return
 
-    # Search
+    # Search with visual progress indicators
+    progress = st.progress(0)
+    status = st.empty()
+    t0 = time.time()
+
     try:
+        status.info("Embedding your query…")
         q_emb = embed_query(query)
+        progress.progress(30)
+
+        status.info("Finding similar projects…")
         idxs, scores = cosine_top_k(q_emb, embedding_matrix, k=max(top_k, 50))
+        progress.progress(65)
     except Exception as e:
+        status.empty()
+        progress.empty()
         st.error(f"Search failed: {e}")
         return
 
@@ -108,13 +120,19 @@ def main():
     results: List[Tuple[Dict, float]]
     if enable_rerank:
         try:
+            status.info("Re-ranking with Gemini for best matches…")
             reranked = rerank_with_gemini(query, candidates, limit=top_k)
             results = reranked
         except Exception as e:
             st.warning(f"Re-ranking unavailable ({e}). Showing semantic matches only.")
             results = [(c, c["score"]) for c in candidates[:top_k]]
+        progress.progress(90)
     else:
         results = [(c, c["score"]) for c in candidates[:top_k]]
+        progress.progress(85)
+
+    status.success(f"Done in {time.time() - t0:.1f}s")
+    progress.progress(100)
 
     # Apply filters
     def passes_filters(item: Dict) -> bool:
@@ -150,11 +168,12 @@ def main():
     # Optional explanations
     if enable_explain:
         with st.expander("Why these results? (Gemini)"):
-            try:
-                text = explain_results(query, [r[0] for r in filtered])
-                st.write(text)
-            except Exception as e:
-                st.warning(f"Explanation unavailable: {e}")
+            with st.spinner("Generating explanation…"):
+                try:
+                    text = explain_results(query, [r[0] for r in filtered])
+                    st.write(text)
+                except Exception as e:
+                    st.warning(f"Explanation unavailable: {e}")
 
     # Anonymized query logging
     try:
