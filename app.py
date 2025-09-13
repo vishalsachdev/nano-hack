@@ -69,14 +69,14 @@ def main():
         return
 
     # Featured searches
-    st.subheader("Featured searches")
+    st.subheader("Featured: Health & Wellness")
     featured = [
-        "virtual try-on",
-        "marketing posters",
-        "comics generator",
-        "room redesign",
-        "chatbot voices",
-        "industrial diagrams",
+        "mental health",
+        "fitness coaching",
+        "nutrition and meal planning",
+        "sleep tracking",
+        "meditation and mindfulness",
+        "relationship support",
     ]
     cols = st.columns(min(6, len(featured)))
     for i, q in enumerate(featured):
