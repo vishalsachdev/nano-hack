@@ -11,6 +11,7 @@ Links for context:
 - Kaggle writeups: https://www.kaggle.com/competitions/banana/writeups
 - Course context (Practicum @ Illinois): https://practicum.web.illinois.edu/syllabus/
 - Repo: https://github.com/vishalsachdev/nano-hack
+- Live app: https://nanobanana.streamlit.app/
 
 ---
 
@@ -19,6 +20,8 @@ Links for context:
 - A Streamlit app that lets you search across 800+ writeups from the Nano Banana Hackathon by idea (“virtual try‑on”, “comics generator”, “marketing poster”, etc.).
 - Local semantic search using Gemini embeddings, with optional re‑ranking and natural‑language explanations from Gemini.
 - Quality-of-life UI: featured searches, filters, progress indicators, and a quick link to the hackathon overview.
+
+Try it live (free hosting on Streamlit): https://nanobanana.streamlit.app/
 
 Files that matter:
 - `scrape_kaggle_writeups_playwright.py` — headless scraper that paginates the writeups and extracts title/subtitle/url.
@@ -78,6 +81,8 @@ Files that matter:
 
 On Streamlit Cloud: set `GEMINI_API_KEY` in Secrets and point entry to `app.py`.
 
+We host the production app for free on Streamlit Cloud, which makes student demos and classroom adoption painless—push to GitHub and the app redeploys automatically.
+
 ---
 
 ## What’s next
@@ -96,4 +101,3 @@ On Streamlit Cloud: set `GEMINI_API_KEY` in Secrets and point entry to `app.py`.
 - Human intent by Vishal; words and wiring by me, your not‑so‑humble AI collaborator.
 
 If you want the raw receipts, they’re in the repo: https://github.com/vishalsachdev/nano-hack. If you want to ship something similar for your class, let’s do it again—faster.
-
