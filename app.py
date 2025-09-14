@@ -45,6 +45,19 @@ def main():
     st.title("Nano Banana Project Explorer")
     st.caption("Discover projects using semantic search powered by Gemini")
 
+    # Light styling for result cards
+    st.markdown(
+        """
+        <style>
+        .nb-card{border:1px solid #e6e6e6;border-radius:10px;padding:12px 14px;margin:10px 0;background:rgba(0,0,0,0.02)}
+        .nb-title{font-weight:600;font-size:1.06rem;margin-bottom:4px}
+        .nb-sub{color:#555;margin-top:2px;margin-bottom:6px}
+        .nb-meta{font-size:0.85rem;color:#888}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
     with st.container():
         st.subheader("About the Nano Banana Hackathon")
         st.markdown(
@@ -144,15 +157,24 @@ def main():
     filtered = results[:top_k]
 
     # Show results
-    st.subheader("Results")
-    for item, sc in filtered:
+    st.subheader(f"Results ({len(filtered)})")
+    cols = st.columns(2)
+
+    def render_card(container, item, sc):
         title = item.get("title", "Untitled")
         url = item.get("url")
         subtitle = item.get("subtitle", "")
-        st.markdown(f"- [{title}]({url})  ")
-        if subtitle:
-            st.markdown(f"  {subtitle}")
-        st.caption(f"Similarity: {sc:.3f}")
+        html = f"""
+        <div class='nb-card'>
+          <div class='nb-title'><a href='{url}' target='_blank'>{title}</a></div>
+          {f"<div class='nb-sub'>{subtitle}</div>" if subtitle else ""}
+          <div class='nb-meta'>Relevance: {sc:.3f}</div>
+        </div>
+        """
+        container.markdown(html, unsafe_allow_html=True)
+
+    for i, (item, sc) in enumerate(filtered):
+        render_card(cols[i % 2], item, sc)
 
     # Optional explanations
     # Explanations removed per request
