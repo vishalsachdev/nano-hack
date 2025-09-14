@@ -68,6 +68,7 @@ def main():
 
     # Ensure embeddings
     entries = load_entries()
+    st.caption(f"Over 800 submissions indexed (currently {len(entries)} writeups).")
     try:
         embedding_matrix = ensure_embeddings(entries)
     except Exception as e:
