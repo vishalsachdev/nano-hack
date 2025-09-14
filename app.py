@@ -61,20 +61,10 @@ def main():
         st.divider()
 
     # Sidebar controls
-    with st.sidebar:
-        st.header("Search Options")
-        top_k = st.slider("Results", min_value=5, max_value=50, value=20, step=5)
-        enable_rerank = st.checkbox("Gemini re-rank for relevance", value=True)
-        enable_explain = st.checkbox("Explain matches (Gemini)", value=False)
-        st.markdown("---")
-        st.subheader("Filters")
-        must_include = st.text_input("Must include keywords (comma-separated)", value="")
-        must_exclude = st.text_input("Exclude keywords (comma-separated)", value="")
-        sort_by = st.selectbox("Sort by", ["Relevance", "Title A→Z"], index=0)
-        st.markdown("---")
-        st.markdown(
-            "Set `GEMINI_API_KEY` in your environment. The app will cache embeddings locally for speed."
-        )
+    # Results count selector (moved from sidebar)
+    top_k = st.slider("Results", min_value=5, max_value=50, value=20, step=5)
+    # Re-ranking is enabled by default to improve result quality
+    enable_rerank = True
 
     # Ensure embeddings
     entries = load_entries()
@@ -149,25 +139,8 @@ def main():
     status.success(f"Done in {time.time() - t0:.1f}s")
     progress.progress(100)
 
-    # Apply filters
-    def passes_filters(item: Dict) -> bool:
-        text = f"{item.get('title','')}\n{item.get('subtitle','')}".lower()
-        inc = [w.strip().lower() for w in must_include.split(',') if w.strip()]
-        exc = [w.strip().lower() for w in must_exclude.split(',') if w.strip()]
-        if any(w not in text for w in inc):
-            return False
-        if any(w in text for w in exc):
-            return False
-        return True
-
-    filtered = [(it, sc) for (it, sc) in results if passes_filters(it)]
-
-    # Sorting
-    if sort_by == "Title A→Z":
-        filtered.sort(key=lambda x: (x[0].get("title", "").lower(), -x[1]))
-
-    # Truncate to top_k after filters/sort
-    filtered = filtered[:top_k]
+    # Default sort is relevance; simply trim to top_k
+    filtered = results[:top_k]
 
     # Show results
     st.subheader("Results")
@@ -181,14 +154,7 @@ def main():
         st.caption(f"Similarity: {sc:.3f}")
 
     # Optional explanations
-    if enable_explain:
-        with st.expander("Why these results? (Gemini)"):
-            with st.spinner("Generating explanation…"):
-                try:
-                    text = explain_results(query, [r[0] for r in filtered])
-                    st.write(text)
-                except Exception as e:
-                    st.warning(f"Explanation unavailable: {e}")
+    # Explanations removed per request
 
     # Anonymized query logging
     try:
@@ -199,8 +165,8 @@ def main():
             "query_sha256": qhash,
             "query_len": len(query),
             "rerank": bool(enable_rerank),
-            "explain": bool(enable_explain),
-            "filters": {"include": must_include, "exclude": must_exclude, "sort": sort_by},
+            "explain": False,
+            "filters": None,
             "results": len(filtered),
             "top_urls": [r[0].get("url") for r in filtered[:5]],
         }
