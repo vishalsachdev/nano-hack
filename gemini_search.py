@@ -4,7 +4,7 @@ Utilities for Gemini-powered semantic search over local JSON entries.
 
 - Builds and caches embeddings using text-embedding-004
 - Fast cosine similarity search with NumPy
-- Optional re-ranking and explanations via gemini-1.5-flash
+- Optional re-ranking and explanations via gemini-2.0-flash
 
 Env:
   GEMINI_API_KEY
@@ -23,7 +23,7 @@ import google.generativeai as genai
 
 
 EMBED_MODEL = "models/text-embedding-004"
-GEN_MODEL = "models/gemini-1.5-flash"
+GEN_MODEL = "gemini-2.0-flash"
 
 EMB_PATH = "data/embeddings.npy"
 META_PATH = "data/embeddings_meta.json"
