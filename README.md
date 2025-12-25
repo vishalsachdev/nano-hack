@@ -8,7 +8,7 @@ A semantic search tool to help students discover relevant projects from the [Nan
 
 ## Why This Exists
 
-Built for students in the [Illinois iMBA/iSchool Practicum](https://practicum.web.illinois.edu/syllabus/), this tool makes it easy to explore 800+ hackathon writeups by *idea* rather than keyword. Whether you're looking for inspiration on virtual try-on, marketing tools, health apps, or creative AI—semantic search surfaces relevant examples fast.
+Built for students in the [Information Systems Practicum](https://practicum.web.illinois.edu/syllabus/), this tool makes it easy to explore 800+ hackathon writeups by *idea* rather than keyword. Whether you're looking for inspiration on virtual try-on, marketing tools, health apps, or creative AI—semantic search surfaces relevant examples fast.
 
 ## Features
 
