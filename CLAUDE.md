@@ -47,13 +47,4 @@ python scrape_kaggle_writeups_playwright.py
 scraper → banana_writeups.json → ensure_embeddings() → app.py search UI
 ```
 
-## Current Focus
-- [ ] [Update during /session-start]
-
-## Roadmap
-- [ ] [Add planned features]
-
 ## Session Log
-### 2025-12-27
-- Initial CLAUDE.md created with roadmap sections
-- Next: Define current development priorities
